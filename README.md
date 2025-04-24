@@ -1,15 +1,15 @@
-# 📊 Dashboard EdTech - Saber Capital
+# Dashboard EdTech - Saber Capital
 
 Este é um dashboard interativo desenvolvido com [Streamlit](https://streamlit.io/) para análise de empresas do setor EdTech B2B, voltado à educação profissionalizante para PMEs, dentro da tese de um Search Fund.
 
-## 🧠 Funcionalidades
+## Funcionalidades
 
 - Comparativo visual entre empresas com base em KPIs estratégicos
 - Radar Chart para análise multidimensional
 - Simulador de Valuation por múltiplos (EV/EBITDA)
 - Visualização dos frameworks aplicados (Market Map e Growth Flywheel)
 
-## 🚀 Como rodar o projeto
+## Como rodar o projeto
 
 1. Clone o repositório:
    ```bash
@@ -27,11 +27,11 @@ Este é um dashboard interativo desenvolvido com [Streamlit](https://streamlit.i
    streamlit run dashboard_edtech_streamlit.py
    ```
 
-## 📦 Requisitos
+## Requisitos
 
 - Python 3.8+
 - Navegador moderno (Google Chrome, Firefox, etc.)
 
-## 🧑‍💼 Autor
+## Autor
 
 Luis Pazzanese — Projeto Saber Capital (Search Fund) • 2025
