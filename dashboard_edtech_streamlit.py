@@ -3,74 +3,74 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="Análise EdTechs - Saber Capital", layout="wide", page_icon=":bar_chart:")
+st.set_page_config(page_title="EdTech Companies Analysis - Saber Capital", layout="wide", page_icon=":bar_chart:")
 
-# Dados das empresas
-dados = pd.DataFrame([
-    {"Empresa": "Skillsoft", "Margem Bruta": 65, "Escalabilidade": 8, "Risco Regulatório": 3, "Alinhamento com Tese": 9},
-    {"Empresa": "Nerdy", "Margem Bruta": 70, "Escalabilidade": 10, "Risco Regulatório": 2, "Alinhamento com Tese": 10},
-    {"Empresa": "2U", "Margem Bruta": 50, "Escalabilidade": 6, "Risco Regulatório": 8, "Alinhamento com Tese": 7},
+# Company data
+data = pd.DataFrame([
+    {"Company": "Skillsoft", "Gross Margin": 65, "Scalability": 8, "Regulatory Risk": 3, "Thesis Fit": 9},
+    {"Company": "Nerdy", "Gross Margin": 70, "Scalability": 10, "Regulatory Risk": 2, "Thesis Fit": 10},
+    {"Company": "2U", "Gross Margin": 50, "Scalability": 6, "Regulatory Risk": 8, "Thesis Fit": 7},
 ])
 
-st.title("Análise de Empresas EdTech - Saber Capital")
+st.title("EdTech Companies Analysis - Saber Capital")
 st.markdown("""
-Este dashboard interativo permite visualizar e comparar empresas com base em critérios estratégicos utilizados por Search Funds.
+This interactive dashboard allows you to visualize and compare companies based on strategic KPIs used by Search Funds.
 """)
 
-# Gráfico comparativo
-st.header("Comparativo entre Empresas")
+# Comparison chart
+st.header("Company Comparison")
 fig = px.bar(
-    dados.melt(id_vars="Empresa", var_name="Critério", value_name="Valor"),
-    x="Empresa", y="Valor", color="Critério", barmode="group",
-    title="Comparativo de KPIs Estratégicos entre as Empresas"
+    data.melt(id_vars="Company", var_name="Criterion", value_name="Value"),
+    x="Company", y="Value", color="Criterion", barmode="group",
+    title="Comparison of Strategic KPIs Across Companies"
 )
 st.plotly_chart(fig, use_container_width=True)
 
-# Tabela de dados
-st.header("Tabela de KPIs")
-st.dataframe(dados.set_index("Empresa"))
+# KPI Table
+st.header("KPI Table")
+st.dataframe(data.set_index("Company"))
 
-# Simulador de Valuation
-st.header("Simulador de Valuation")
+# Valuation Simulator
+st.header("Valuation Simulator")
 st.markdown("""
-Ajuste os parâmetros abaixo para simular o valuation projetado para uma empresa EdTech:
+Adjust the parameters below to simulate the projected valuation of an EdTech company:
 """)
 
-receita_atual = st.number_input("Receita Anual Atual (US$ mil)", min_value=0, value=10000, step=500)
-crescimento_anual = st.slider("Taxa de Crescimento Anual (%)", 0, 100, 20)
-margem_ebitda = st.slider("Margem EBITDA (%)", 0, 100, 30)
-mult_ev_ebitda = st.slider("Múltiplo EV/EBITDA", 1, 30, 12)
-periodo_anos = st.slider("Horizonte de Projeção (anos)", 1, 10, 5)
+current_revenue = st.number_input("Current Annual Revenue (US$ thousands)", min_value=0, value=10000, step=500)
+annual_growth = st.slider("Annual Growth Rate (%)", 0, 100, 20)
+ebitda_margin = st.slider("EBITDA Margin (%)", 0, 100, 30)
+ev_ebitda_multiple = st.slider("EV/EBITDA Multiple", 1, 30, 12)
+projection_years = st.slider("Projection Horizon (years)", 1, 10, 5)
 
-# Cálculos
-receita_futura = receita_atual * ((1 + crescimento_anual / 100) ** periodo_anos)
-ebitda_futuro = receita_futura * (margem_ebitda / 100)
-valuation_estimado = ebitda_futuro * mult_ev_ebitda
+# Calculations
+future_revenue = current_revenue * ((1 + annual_growth / 100) ** projection_years)
+future_ebitda = future_revenue * (ebitda_margin / 100)
+estimated_valuation = future_ebitda * ev_ebitda_multiple
 
-st.subheader("Resultado da Simulação")
-st.write(f"Receita Estimada no Ano {periodo_anos}: US$ {receita_futura:,.0f}")
-st.write(f"EBITDA Estimado: US$ {ebitda_futuro:,.0f}")
-st.write(f"Valuation Estimado (EV): US$ {valuation_estimado:,.0f}")
+st.subheader("Simulation Results")
+st.write(f"Estimated Revenue in Year {projection_years}: US$ {future_revenue:,.0f}")
+st.write(f"Estimated EBITDA: US$ {future_ebitda:,.0f}")
+st.write(f"Estimated Valuation (EV): US$ {estimated_valuation:,.0f}")
 
-# Tela de apresentação dos Frameworks
-st.header("Frameworks Estratégicos Aplicados")
+# Strategy Frameworks Section
+st.header("Strategic Frameworks Applied")
 
-with st.expander("Market Map: Segmentos do Ecossistema EdTech B2B"):
+with st.expander("Market Map: EdTech B2B Ecosystem Segments"):
     st.markdown("""
-    **1. Infraestrutura de Aprendizado**: Plataformas LMS, integrações com HRIS, APIs educacionais
+    **1. Learning Infrastructure**: LMS platforms, HRIS integrations, educational APIs
 
-    **2. Conteúdo e Currículo**: Empresas que produzem cursos próprios ou curam conteúdo externo
+    **2. Content and Curriculum**: Companies creating proprietary courses or curating external content
 
-    **3. Distribuição e Escalabilidade**: Marketplaces, white-labels, soluções plug-and-play
+    **3. Distribution and Scalability**: Marketplaces, white-labels, plug-and-play solutions
 
-    **4. Dados e Engajamento**: Ferramentas de analytics, personalização, gamificação, feedback contínuo
+    **4. Data and Engagement**: Analytics tools, personalization, gamification, continuous feedback
     """)
 
-with st.expander("Growth Flywheel: Ciclo Virtuoso de Crescimento"):
+with st.expander("Growth Flywheel: Virtuous Growth Cycle"):
     st.markdown("""
-    **Aquisição Eficiente**: CAC baixo, aquisição orgânica, parcerias institucionais
+    **Efficient Acquisition**: Low CAC, organic acquisition, institutional partnerships
 
-    **Entrega de Valor Percebido**: Alta retenção, engajamento do usuário, tempo na plataforma
+    **Perceived Value Delivery**: High retention, user engagement, time spent on platform
 
-    **Expansão de Receita**: Upsell, cross-sell, aumento de LTV e licenças contratadas
+    **Revenue Expansion**: Upsell, cross-sell, increased LTV and contracted licenses
     """)
